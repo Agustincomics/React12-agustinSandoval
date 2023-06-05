@@ -7,7 +7,7 @@ const Formulario = () => {
     const [tiempo, setTiempo] = useState(null);
     const [error, setError] = useState('');
 
-    const apiKey = '07477f0389d54de1bf1205727230406';
+    const apiKey = 'cec11ffcf0c3427597ccb2e69e679114';
 
     const handleCiudadChange = (e) => {
         setCiudad(e.target.value);
@@ -25,7 +25,7 @@ const Formulario = () => {
         return;
         }
         setError('');
-            fetch(`https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${ciudad},${pais}`).then((respuesta) => respuesta.json())
+            fetch(`https://api.openweathermap.org/data/2.5/weather?q=${ciudad},${pais}&lang=sp&appid=${apiKey}&units=metric`).then((respuesta) => respuesta.json())
             .then((dato) => {
               if (dato.error) {
                 setError('No se encontraron datos de la ubicación ingresada');
@@ -66,10 +66,10 @@ const Formulario = () => {
         {tiempo && (
             <div>
             <h2>Resultado:</h2>
-            <p>Ubicación: {tiempo.location.name}, {tiempo.location.country}</p>
-            <p>Temperatura: {tiempo.current.temp_c} °C</p>
-            <p>Humedad: {tiempo.current.humidity}%</p>
-            <p>Descripción: {tiempo.current.condition.text}</p>
+            <p>Ubicación: {tiempo.name}, {tiempo.country}</p>
+            <p>Temperatura: {tiempo.main.temp} °C</p>
+            <p>Humedad: {tiempo.main.humidity}%</p>
+            <p>Descripción: {tiempo.weather.description}</p>
             </div>
         )}
         </Container>
