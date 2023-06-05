@@ -69,7 +69,7 @@ const Formulario = () => {
             <p>Ubicación: {tiempo.name}, {tiempo.country}</p>
             <p>Temperatura: {tiempo.main.temp} °C</p>
             <p>Humedad: {tiempo.main.humidity}%</p>
-            <p>Descripción: {tiempo.weather.description}</p>
+            <p>Descripción: {tiempo.weather[0].description}</p>
             </div>
         )}
         </Container>
